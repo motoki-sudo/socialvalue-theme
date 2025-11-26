@@ -6,32 +6,24 @@
  */
 get_header();
 
-/**
- * ▼ 実践カテゴリの判定に使う値（必要に応じて編集）
- *   slug が未整備なら name 判定でOK。両方用意しておくと堅牢。
- */
 $PRACTICES_TERMS = [
   [
-    'slug' => '',                    // 例: 'companies-practices'
-    'name' => '企業における実践',
+    'slug' => 'companies-practices',
     'class'=> 'is-companies',
   ],
   [
-    'slug' => '',                    // 例: 'foundations-npo-practices'
-    'name' => '財団・非営利組織における実践',
+    'slug' => 'foundations-npo-practices',
     'class'=> 'is-foundations',
   ],
 ];
 
 $terms = get_the_terms( get_the_ID(), 'workresult_category' );
 $term_slugs = $terms ? wp_list_pluck($terms, 'slug') : [];
-$term_names = $terms ? wp_list_pluck($terms, 'name') : [];
 
 $is_practices = false;
 $header_class = 'is-default';
 foreach ( $PRACTICES_TERMS as $pt ) {
-  if ( ($pt['slug'] && in_array($pt['slug'], $term_slugs, true)) ||
-       ($pt['name'] && in_array($pt['name'], $term_names, true)) ) {
+  if ( $pt['slug'] && in_array($pt['slug'], $term_slugs, true) ) {
     $is_practices = true;
     $header_class = $pt['class'];
     break;

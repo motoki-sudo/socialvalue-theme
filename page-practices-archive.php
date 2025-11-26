@@ -7,20 +7,17 @@ get_header();
 
 /**
  * ▼ マッピング設定（必要に応じて編集）
- * - 固定ページのスラッグ => 紐づける workresult_category （slug と name を両方用意）
- *   ※ まず slug を優先し、見つからなければ name で検索します。
+ * - 固定ページのスラッグ => 紐づける workresult_category（slug ベース）
  */
 $PRACTICES_PAGE_MAP = [
   'practices-of-companies' => [
     'header_class' => 'is-companies',
-    'term_slug'    => '',                   // 例: 'companies-practices'（未定なら空でOK）
-    'term_name'    => '企業における実践',     // 実際のカテゴリ名に合わせて
+    'term_slug'    => 'companies-practices',
     'heading'      => '企業における実践',
   ],
   'practices-of-foundations-and-non-profit-organizations' => [
     'header_class' => 'is-foundations',
-    'term_slug'    => '',                          // 例: 'foundations-npo-practices'
-    'term_name'    => '財団・非営利組織における実践',
+    'term_slug'    => 'foundations-npo-practices',
     'heading'      => '財団・非営利組織における実践',
   ],
 ];
@@ -29,17 +26,13 @@ $slug = get_post_field('post_name', get_the_ID());
 $conf = $PRACTICES_PAGE_MAP[$slug] ?? [
   'header_class' => 'is-default',
   'term_slug'    => '',
-  'term_name'    => '',
   'heading'      => get_the_title(),
 ];
 
-// term を取得（slug 優先、なければ name）
+// term を取得（slug ベース）
 $term = null;
 if ( ! empty($conf['term_slug']) ) {
   $term = get_term_by('slug', $conf['term_slug'], 'workresult_category');
-}
-if ( ! $term && ! empty($conf['term_name']) ) {
-  $term = get_term_by('name', $conf['term_name'], 'workresult_category');
 }
 
 // クエリ
