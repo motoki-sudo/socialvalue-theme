@@ -1,0 +1,79 @@
+body.workresult {
+    .button_nav {
+        ul {
+            margin: 0 -5px;
+            width: 1010px;
+            li {
+                margin: 0 5px;
+                width: 116px;
+                vertical-align: top;
+                a {
+                    font-size: 12px;
+                    line-height: 12px;
+                }
+                &.small {
+                    a {
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .result_list {
+        > li {
+            padding: 40px;
+            border-bottom: 1px solid #ddd;
+            .data {
+                @include clearfix;
+                .date {
+                    font-size: 20px;
+                    font-style: italic;
+                    font-weight: bold;
+                    float: left;
+                    line-height: 24px;
+                }
+                .category {
+                    font-size: 10px;
+                    background-color: #d2d2d2;
+                    color: #ffffff;
+                    float: left;
+                    margin-left: 20px;
+                    padding: 7px 10px;
+                }
+            }
+            .title {
+                margin-top: calc(30px - .4em);
+                line-height: 1.8;
+                font-weight: bold;
+            }
+        }
+    }
+    @media screen and (max-width: 640px) {
+        .button_nav {
+            ul {
+                margin: 0;
+                width: auto;
+                li {
+                    margin: 10px 0 0;
+                    width: auto;
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                    &.small {
+                        a {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+        .result_list {
+            > li {
+                padding: 20px 0;
+                .title {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}

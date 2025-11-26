@@ -1,0 +1,189 @@
+body.impactassessment {
+    .about {
+        h2 {
+            border-top: 0;
+        }
+        .text {
+            margin-top: 40px;
+        }
+    }
+    .significance {
+        .shadow_box {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            ol {
+                > li {
+                    margin-top: 25px;
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                    .text {
+                        margin-top: -10px;
+                    }
+                }
+            }
+        }
+    }
+    .assessmentstep {
+        .step_list {
+            margin-top: 40px;
+            > li {
+                margin-top: 30px;
+                position: relative;
+                padding-left: 30px;
+                &:before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    border-left: 4px solid #ddd;
+                    height: 100%;
+                    top: 0;
+                    left: 8px;
+                }
+                &:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 10px 5px 0 5px;
+                    border-color: #ddd transparent transparent transparent;
+                    bottom: -4px;
+                    left: 5px;
+                }
+                h3 {
+                    font-size: 16px;
+                    font-weight: bold;
+                    letter-spacing: 0.1em;
+                    margin-bottom: 20px;
+                }
+                .sub_step_list {
+                    > li {
+                        margin-top: 10px;
+                        &:first-child {
+                            margin-top: 0;
+                        }
+                        @include clearfix;
+                        .step {
+                            padding: 10px 20px;
+                            color: #ffffff;
+                            width: 380px;
+                            float: left;
+                            font-size: 16px;
+                            @include clearfix;
+                            .number {
+                                border-right: 1px solid #fff;
+                                float: left;
+                                margin-right: 20px;
+                                padding: 10px 20px 10px 0;
+                            }
+                            .title {
+                                padding: 10px 0;
+                            }
+                        }
+                        .detail {
+                            display: table;
+                            height: 56px;
+                            width: 550px;
+                            margin-left: 40px;
+                            float: left;
+                            border-bottom: 1px solid #ddd;
+                            font-size: 14px;
+                            line-height: 1.4;
+                            font-weight: bold;
+                            .inner {
+                                display: table-cell;
+                                vertical-align: middle;
+                            }
+                        }
+                    }
+                }
+                &.plan {
+                    h3 {
+                        color: #bddbed;
+                    }
+                    .sub_step_list {
+                        > li {
+                            .step {
+                                background-color: #bddbed;
+                            }
+                        }
+                    }
+                }
+                &.do {
+                    h3 {
+                        color: #77adcd;
+                    }
+                    .sub_step_list {
+                        > li {
+                            .step {
+                                background-color: #77adcd;
+                            }
+                        }
+                    }
+                }
+                &.assess {
+                    h3 {
+                        color: #4a85a7;
+                    }
+                    .sub_step_list {
+                        > li {
+                            .step {
+                                background-color: #4a85a7;
+                            }
+                        }
+                    }
+                }
+                &.reportutilize {
+                    h3 {
+                        color: #0e6191;
+                    }
+                    .sub_step_list {
+                        > li {
+                            .step {
+                                background-color: #0e6191;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .note {
+            margin-top: 40px;
+            font-size: 11px;
+        }
+    }
+    @media screen and (max-width: 640px) {
+        .assessmentstep {
+            .step_list {
+                > li {
+                    .sub_step_list {
+                        > li {
+                            .step {
+                                width: auto;
+                                float: none;
+                                padding: 10px;
+                                font-size: 12px;
+                                .number {
+                                    padding: 10px 10px 10px 0;
+                                    margin-right: 10px;
+                                }
+                                .title {
+                                    padding: 10px 0;
+                                }
+                            }
+                            .detail {
+                                margin-left: 0;
+                                float: none;
+                                width: auto;
+                                height: auto;
+                                padding: 10px 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

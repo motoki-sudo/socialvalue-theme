@@ -1,0 +1,15 @@
+body.recruit {
+    .container {
+        padding: 60px 0 100px;
+        border-top: 0;
+    }
+    .toggle_list {
+        margin-top: 60px;
+    }
+    @media screen and (max-width: 640px) {
+        .container {
+            padding: 0;
+            margin: 40px 20px;
+        }
+    }
+}

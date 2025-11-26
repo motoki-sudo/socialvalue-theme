@@ -1,0 +1,231 @@
+body.aboutsroi {
+    #roots {
+        padding-top: 80px;
+        margin-top: -80px;
+        ol {
+            > li {
+                margin-top: 40px;
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+    #summary {
+        padding-top: 80px;
+        margin-top: -80px;
+        .formula {
+            margin-top: 40px;
+            .equation {
+                margin-top: 30px;
+                display: table;
+                font-size: 16px;
+                font-weight: bold;
+                .answer {
+                    display: table-cell;
+                    padding: 20px;
+                    border: 1px solid #ddd;
+                    width: 160px;
+                    text-align: center;
+                    small {
+                        font-size: 14px;
+                    }
+                }
+                .equal {
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 20px;
+                }
+                .fraction {
+                    display: table-cell;
+                    vertical-align: middle;
+                    .numerator {
+                        margin-bottom: 10px;
+                        padding-bottom: 10px;
+                        border-bottom: 1px solid #333;
+                    }
+                }
+            }
+            ol {
+                margin-top: 40px;
+                > li {
+                    margin-top: 40px;
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+        .feature {
+            margin-top: 60px;
+            ol {
+                @include clearfix;
+                > li {
+                    width: 320px;
+                    margin-left: 20px;
+                    float: left;
+                    padding: 29px;
+                    border: 1px solid #ddd;
+                    height: 420px;
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                    .number {
+                        font-size: 24px;
+                        color: #0e6191;
+                        text-align: center;
+                        font-weight: bold;
+                    }
+                    .title {
+                        margin-top: 10px;
+                        display: table;
+                        height: 44px;
+                        width: 100%;
+                        .inner {
+                            vertical-align: middle;
+                            display: table-cell;
+                            font-size: 16px;
+                            color: #0e6191;
+                            text-align: center;
+                            font-weight: bold;
+                            line-height: 1.4;
+                        }
+                    }
+                    .text {
+                        margin-top: 20px;
+                        padding-top: 20px;
+                        border-top: 1px solid #ddd;
+                    }
+                }
+            }
+        }
+    }
+    #principle {
+        padding-top: 80px;
+        margin-top: -80px;
+        table {
+            font-size: 14px;
+            margin-top: 40px;
+            thead {
+                td, th {
+                    padding: 20px;
+                    border: 1px solid #ddd;
+                }
+                th {
+                    background-color: #f8f8f8;
+                    font-weight: bold;
+                }
+            }
+            tbody {
+                td, th {
+                    padding: 20px;
+                    border: 1px solid #ddd;
+                }
+                th {
+                    font-weight: bold;
+                    vertical-align: middle;
+                }
+                td {
+                    &.title {
+                        width: 320px;
+                        .en {
+                            color: #0e6191;
+                            font-size: 12px;
+                            margin-top: 5px;
+                        }
+                    }
+                    &.detail {
+                        line-height: 1.4;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+        .note {
+            margin-bottom: 40px;
+        }
+    }
+    #case {
+        padding-top: 80px;
+        margin-top: -80px;
+    }
+    @media screen and (max-width: 640px) {
+        #roots {
+            padding-top: 40px;
+            margin-top: 0;
+        }
+        #summary {
+            padding-top: 40px;
+            margin-top: -40px;
+            .formula {
+                .equation {
+                    font-size: 12px;
+                    .answer {
+                        padding: 10px;
+                        width: auto;
+                        vertical-align: middle;
+                        small {
+                            font-size: 10px;
+                        }
+                    }
+                    .equal {
+                        padding: 10px;
+                    }
+                }
+            }
+            .feature {
+                margin-top: 60px;
+                ol {
+                    @include clearfix;
+                    > li {
+                        width: auto;
+                        margin-left: 0;
+                        margin-top: 20px;
+                        float: none;
+                        padding: 19px;
+                        height: auto;
+                        &:first-child {
+                            margin-top: 0;
+                        }
+                        .title {
+                            display: block;
+                            height: auto;
+                            .inner {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #principle {
+            padding-top: 40px;
+            margin-top: -40px;
+            table {
+                font-size: 10px;
+                thead {
+                    td, th {
+                        padding: 10px;
+                    }
+                }
+                tbody {
+                    td, th {
+                        padding: 10px;
+                    }
+                    td {
+                        &.title {
+                            width: auto;
+                            .en {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #case {
+            padding-top: 40px;
+            margin-top: -40px;
+        }
+    }
+}

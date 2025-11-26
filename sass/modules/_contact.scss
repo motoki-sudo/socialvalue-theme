@@ -1,0 +1,151 @@
+body.contact {
+    .screen-reader-response {
+        font-size: 14px;
+        margin-bottom: 40px;
+        text-align: center;
+        ul {
+            display: none;
+        }
+    }
+    .description_list {
+        > li {
+            line-height: 40px;
+            .term {
+                padding-left: 80px;
+            }
+            &.require {
+                .term {
+                    &:before {
+                        content: '必須';
+                        position: absolute;
+                        left: 20px;
+                        top: 40px;
+                        display: block;
+                        font-weight: normal;
+                        font-size: 12px;
+                        padding: 4px 5px;
+                        border-radius: 5px;
+                        color: #ffffff;
+                        background-color: #b82727;
+                        line-height: 1;
+                    }
+                }
+                .description {
+                    input[type=text],
+                    input[type=tel],
+                    input[type=email],
+                    textarea {
+                        font-size: 14px;
+                        padding: 9px;
+                        border: 1px solid #ccc;
+                        line-height: 20px;
+                        width: 100%;
+                    }
+                    textarea {
+                        height: 320px;
+                    }
+                    .wpcf7-list-item {
+                        display: inline-block;
+                        margin-left: 10px;
+                        &.first {
+                            margin-left: 0;
+                        }
+                    }
+                    .wpcf7-not-valid-tip {
+                        display: block;
+                        color: #b82727;
+                        font-size: 14px;
+                        line-height: 1;
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .privacy_policy {
+        margin-top: 40px;
+        border: 1px solid #ddd;
+        padding: 29px;
+        line-height: 1.8;
+        height: 160px;
+        overflow: scroll;
+        font-size: 14px;
+    }
+    .action {
+        margin-top: 40px;
+        input {
+            display: block;
+            -webkit-appearance: none;
+            border-radius: 0;
+            background-color: #0e6191;
+            color: #ffffff;
+            width: 320px;
+            line-height: 1;
+            margin: 0 auto;
+            font-size: 20px;
+            padding: 20px 0;
+            box-shadow: none;
+            border: 0;
+        }
+    }
+    .wpcf7-response-output {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    @media screen and (max-width: 640px) {
+        .screen-reader-response {
+            font-size: 14px;
+            margin-bottom: 40px;
+            text-align: center;
+            ul {
+                display: none;
+            }
+        }
+        .description_list {
+            > li {
+                line-height: 40px;
+                .term {
+                    padding-left: 40px;
+                }
+                &.require {
+                    .term {
+                        line-height: 20px;
+                        &:before {
+                            left: 0px;
+                            top: 20px;
+                        }
+                    }
+                    .description {
+                        margin-top: 10px;
+                        input[type=text],
+                        input[type=tel],
+                        input[type=email],
+                        textarea {
+                            font-size: 16px;
+                        }
+                        textarea {
+                            height: 160px;
+                        }
+                    }
+                }
+            }
+        }
+        .privacy_policy {
+            margin-top: 30px;
+            padding: 19px;
+        }
+        .action {
+            margin-top: 30px;
+            input {
+                width: 100%;
+            }
+        }
+        .wpcf7-response-output {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+    }
+}

@@ -1,0 +1,47 @@
+body.message {
+    .text {
+        img {
+            float: left;
+            margin: 0 40px 20px 0;
+        }
+        p {
+            margin-top: 30px;
+            line-height: 2;
+        }
+        img + p {
+            margin-top: 0;
+        }
+    }
+    .written {
+        margin-top: 40px;
+        text-align: right;
+        .role {
+            font-size: 16px;
+            br {
+                display: none;
+            }
+        }
+        .name {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    }
+    @media screen and (max-width: 640px) {
+        .text {
+            img {
+                width: 100%;
+            }
+        }
+        .written {
+            margin-top: 40px;
+            text-align: right;
+            .role {
+                font-size: 14px;
+                line-height: 1.4;
+                br {
+                    display: inline;
+                }
+            }
+        }
+    }
+}

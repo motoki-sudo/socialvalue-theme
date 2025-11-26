@@ -1,0 +1,70 @@
+body.member {
+    .member_list {
+        > li {
+            padding-left: 320px;
+            position: relative;
+            margin-top: 80px;
+            &:first-child {
+                margin-top: 0;
+            }
+            .photo {
+                position: absolute;
+                left: 0;
+                top: 0;
+                box-shadow: 20px 20px #f2f2f2;
+            }
+            .name {
+                vertical-align: bottom;
+                font-size: 32px;
+                font-weight: bold;
+                .en {
+                    font-size: 20px;
+                    display: inline-block;
+                    margin-left: 20px;
+                }
+            }
+            .role {
+                font-size: 18px;
+                margin-top: 20px;
+                font-weight: bold;
+            }
+            .position {
+                font-size: 16px;
+                margin-top: 20px;
+                font-weight: bold;
+            }
+        }
+    }
+    @media screen and (max-width: 640px) {
+        .member_list {
+            > li {
+                padding-left: 0;
+                .photo {
+                    position: static;
+                    width: 200px;
+                    margin: 0 auto;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .name {
+                    margin-top: 40px;
+                    .en {
+                        display: block;
+                        margin-left: 0;
+                        margin-top: 10px;
+                        font-size: 14px;
+                    }
+                }
+                .role {
+                    font-size: 12px;
+                    line-height: 1.4;
+                }
+                .position {
+                    font-size: 12px;
+                    line-height: 1.4;
+                }
+            }
+        }
+    }
+}

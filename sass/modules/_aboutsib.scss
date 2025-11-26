@@ -1,0 +1,212 @@
+body.aboutsib {
+    .old {
+        .header_line {
+            margin-top: 60px;
+        }
+        .pattern {
+            margin-top: 30px;
+            @include clearfix;
+            .pattern1 {
+                float: left;
+                width: 390px;
+                padding-right: 40px;
+                border-right: 1px solid #ddd;
+            }
+            .pattern2 {
+                float: right;
+                width: 610px;
+                padding-left: 40px;
+            }
+            h4 {
+                font-weight: bold;
+                color: #0e6191;
+                font-size: 18px;
+                .number {
+                    font-size: 24px;
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+            }
+            .text {
+                margin-top: 20px;
+            }
+            .image {
+                margin-top: 60px;
+            }
+        }
+    }
+    .sib {
+        margin-top: 60px;
+        padding-top: 60px;
+        border-top: 1px solid #ddd;
+        .phase_list {
+            > li {
+                padding-top: 60px;
+                h4 {
+                    font-size: 18px;
+                    color: #0e6191;
+                    margin-bottom: 20px;
+                }
+                h5 {
+                    font-weight: bold;
+                    color: #0e6191;
+                    font-size: 14px;
+                    margin-bottom: 20px;
+                }
+                > .image {
+                    margin-top: 60px;
+                    margin-bottom: 60px;
+                    padding-bottom: 60px;
+                    border-bottom: 1px solid #ddd;
+                }
+                &.phase3 {
+                    .merit {
+                        margin-top: 60px;
+                        > ul {
+                            margin-top: 60px;
+                            > li {
+                                padding-left: 200px;
+                                position: relative;
+                                margin-top: 30px;
+                                &:first-child {
+                                    margin-top: 0;
+                                }
+                                .image {
+                                    width: 100px;
+                                    text-align: center;
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    font-size: 12px;
+                                    img {
+                                        margin-bottom: 10px;
+                                    }
+                                    small {
+                                        font-size: 10px;
+                                    }
+                                }
+                                > ul {
+                                    padding: 30px 40px;
+                                    border: 1px solid #ddd;
+                                    position: relative;
+                                    &:before, &:after {
+                                        content: '';
+                                        display: block;
+                                        width: 0;
+                                        height: 0;
+                                        position: absolute;
+                                        border-style: solid;
+                                    }
+                                    &:before {
+                                        top: 30px;
+                                        left: -20px;
+                                        border-width: 10px 20px 10px 0;
+                                        border-color: transparent #dddddd transparent transparent;
+                                    }
+                                    &:after {
+                                        top: 31px;
+                                        left: -17px;
+                                        border-width: 9px 18px 9px 0;
+                                        border-color: transparent #ffffff transparent transparent;
+                                    }
+                                    > li {
+                                        margin-top: 10px;
+                                        line-height: 1.4;
+                                        font-size: 14px;
+                                        padding-left: 20px;
+                                        position: relative;
+                                        &:before {
+                                            content: '● ';
+                                            color: #77adcd;
+                                            position: absolute;
+                                            left: 0;
+                                            top: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 640px) {
+        .old {
+            .header_line {
+                margin-top: 60px;
+            }
+            .pattern {
+                margin-top: 30px;
+                @include clearfix;
+                .pattern1 {
+                    float: none;
+                    width: auto;
+                    padding-right: 0;
+                    border-right: 0;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .pattern2 {
+                    float: none;
+                    width: auto;
+                    padding-left: 0;
+                    margin-top: 30px;
+                    img {
+                        width: 100%;
+                    }
+                }
+                h4 {
+                    .number {
+                        display: block;
+                        margin-right: 0;
+                        margin-bottom: 10px;
+                    }
+                }
+                .image {
+                    margin-top: 20px;
+                }
+            }
+        }
+        .sib {
+            .phase_list {
+                > li {
+                    > .image {
+                        margin-top: 30px;
+                        margin-bottom: 30px;
+                        padding-bottom: 30px;
+                        border-bottom: 1px solid #ddd;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    &.phase3 {
+                        .merit {
+                            margin-top: 30px;
+                            > ul {
+                                margin-top: 30px;
+                                > li {
+                                    padding-left: 80px;
+                                    &:first-child {
+                                        margin-top: 0;
+                                    }
+                                    .image {
+                                        width: 60px;
+                                        font-size: 10px;
+                                        img {
+                                            width: 100%;
+                                        }
+                                    }
+                                    > ul {
+                                        padding: 10px 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
