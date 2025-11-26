@@ -59,6 +59,7 @@ if ( is_tax() ) {
                     // ===== ACF 取得 =====
                     $url  = function_exists('get_field') ? get_field('wr_link_url')   : '';
                     $type = function_exists('get_field') ? get_field('wr_link_type') : '';
+                    // 一覧用説明文（最大59文字想定）
                     $desc = function_exists('get_field') ? get_field('wr_short_desc'): '';
 
                     // デフォルト値やフォールバック
@@ -78,7 +79,7 @@ if ( is_tax() ) {
                     // アイコン（必要に応じて差し替え可）
                     $icon_html = '';
                     if ( $type === 'external' ) {
-                        $icon_html = '<span class="wr-icon wr-icon-external" aria-label="外部リンク" title="外部リンク">↗</span>';
+                        $icon_html = '<span class="wr-link-icon wr-link-icon--external" aria-label="外部リンク"></span>';
                     } elseif ( $type === 'internal' ) {
                         $icon_html = '<span class="wr-icon wr-icon-internal" aria-label="内部リンク" title="内部リンク">→</span>';
                     }
