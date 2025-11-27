@@ -39,9 +39,9 @@ foreach ( $PRACTICES_TERMS as $pt ) {
     <header class="wr-header">
       <h1 class="ttl"><?php the_title(); ?></h1>
       <?php
-      $genre  = function_exists('get_field') ? ( get_field('wr_genre') ?: get_field('pd_genre') ) : '';
-      $client = function_exists('get_field') ? ( get_field('wr_client') ?: get_field('pd_client') ) : '';
-      $year   = function_exists('get_field') ? ( get_field('wr_order_year') ?: get_field('pd_year') ) : '';
+      $genre  = function_exists('get_field') ? get_field('wr_genre')       : '';
+      $client = function_exists('get_field') ? get_field('wr_client')      : '';
+      $year   = function_exists('get_field') ? get_field('wr_order_year')  : '';
       if ( $genre || $client || $year ) : ?>
         <ul class="wr-meta">
           <?php if ( $genre ): ?><li><strong>ジャンル</strong><div><?php echo esc_html( $genre ); ?></div></li><?php endif; ?>
@@ -52,14 +52,14 @@ foreach ( $PRACTICES_TERMS as $pt ) {
     </header>
 
     <div class="container">
-      <?php if ( function_exists('get_field') && ($ov = ( get_field('wr_overview') ?: get_field('pd_overview') )) ): ?>
+      <?php if ( function_exists('get_field') && ($ov = get_field('wr_overview')) ): ?>
         <section id="wr-section-overview">
           <h2>事業概要</h2>
           <div class="rich"><?php echo wp_kses_post($ov); ?></div>
         </section>
       <?php endif; ?>
 
-      <?php if ( function_exists('get_field') && ($obj = ( get_field('wr_evaluation_purpose') ?: get_field('pd_objective') )) ): ?>
+      <?php if ( function_exists('get_field') && ($obj = get_field('wr_evaluation_purpose')) ): ?>
         <section id="wr-section-purpose">
           <h2>評価目的</h2>
           <div class="rich"><?php echo wp_kses_post($obj); ?></div>
@@ -83,11 +83,6 @@ foreach ( $PRACTICES_TERMS as $pt ) {
             <?php if ( $method_domain ): ?><li>評価領域：<?php echo esc_html( $method_domain ); ?></li><?php endif; ?>
           </ul>
         </section>
-      <?php elseif ( function_exists('get_field') && ($methods = get_field('pd_methods')) ): ?>
-        <section id="wr-section-methods">
-          <h2>評価方法</h2>
-          <ul><?php foreach ($methods as $r): ?><li><?php echo esc_html($r['text']); ?></li><?php endforeach; ?></ul>
-        </section>
       <?php endif; ?>
 
       <?php
@@ -108,19 +103,6 @@ foreach ( $PRACTICES_TERMS as $pt ) {
             <?php endif; ?>
           </div>
         </section>
-      <?php elseif ( function_exists('get_field') && ($interims = get_field('pd_interim')) ): ?>
-        <section id="wr-section-results" class="wr-section-two-columns">
-          <div class="wr-section-body">
-            <h2>評価結果</h2>
-            <?php foreach ($interims as $r): ?>
-              <div class="interim-row" style="margin:16px 0;">
-                <?php if (!empty($r['subtitle'])): ?><h3><?php echo esc_html($r['subtitle']); ?></h3><?php endif; ?>
-                <div class="rich"><?php echo wp_kses_post($r['text']); ?></div>
-              </div>
-            <?php endforeach; ?>
-          </div>
-          <div class="wr-section-image"></div>
-        </section>
       <?php endif; ?>
 
       <?php
@@ -140,14 +122,6 @@ foreach ( $PRACTICES_TERMS as $pt ) {
               <?php echo wp_get_attachment_image( $client_use_image['ID'], 'large' ); ?>
             <?php endif; ?>
           </div>
-        </section>
-      <?php elseif ( function_exists('get_field') && ($util = get_field('pd_utilization')) ): ?>
-        <section id="wr-section-client-use" class="wr-section-two-columns">
-          <div class="wr-section-body">
-            <h2>クライアントによる評価の活用</h2>
-            <div class="rich"><?php echo wp_kses_post($util); ?></div>
-          </div>
-          <div class="wr-section-image"></div>
         </section>
       <?php endif; ?>
     </div>
