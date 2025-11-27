@@ -2387,7 +2387,7 @@ li.ls-none {
 @media screen and (max-width:640px) {
     .c-link-group{
         display: block;
-    }    
+    }
 }
 
 .c-link {
@@ -3396,8 +3396,8 @@ body.sub .description_list > li .term {
       left: 0;
       top: 0;
       font-weight: bold; }
-			
-			
+
+
 .logo_area h3 {
 	  padding: 40px 0;
     text-align: center;
@@ -3463,7 +3463,7 @@ footer nav ul li ul li ul li:before {
 	 body.recruit .container {
     padding: 0;
     margin: 40px 20px; }
-	
+
   .logo_area ul li {
 	max-width: 48%;
 	}
@@ -3668,7 +3668,7 @@ body.sub .related__list ul > li {
     letter-spacing: 0.1em;
     text-indent: 0.1em;
   }
-  
+
 
   #card {
   }
@@ -3894,4 +3894,142 @@ margin-right: 1rem;
         display: block;
         width: auto;
       }
+}
+
+/* =========================
+   Workresult practices layout
+   ========================= */
+
+.single-workresult .workresult-detail {
+  max-width: 960px;
+  margin: 80px auto 120px;
+}
+
+/* タイトル */
+.single-workresult .wr-header .ttl {
+  font-size: 2.4rem;
+  line-height: 1.4;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+/* メタ情報（ジャンル／発注者／受注年度） */
+.single-workresult .wr-meta {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+}
+
+.single-workresult .wr-meta li {
+  font-size: 0.95rem;
+}
+
+.single-workresult .wr-meta li strong {
+  display: block;
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+/* 2カラムセクション（評価結果／クライアント活用） */
+.single-workresult .wr-section-two-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+  gap: 40px;
+  align-items: flex-start;
+  margin-top: 40px;
+}
+
+.single-workresult .wr-section-two-columns .wr-section-body .rich {
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .single-workresult .workresult-detail {
+    margin: 40px 16px 80px;
+  }
+
+  .single-workresult .wr-section-two-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   Practices archive list
+   ========================= */
+
+.page-template-page-practices-archive .archive_list {
+  max-width: 960px;
+  margin: 60px auto 100px;
+}
+
+.page-template-page-practices-archive .archive_list .archive_item {
+  margin: 24px 0;
+  padding: 16px 0;
+  border-top: 1px solid #ddd;
+}
+
+.page-template-page-practices-archive .archive_list .archive_item:last-child {
+  border-bottom: 1px solid #ddd;
+}
+
+.page-template-page-practices-archive .archive_list .archive_item h2 {
+  font-size: 1.1rem;
+  margin: 0 0 6px;
+  font-weight: 500;
+}
+
+.page-template-page-practices-archive .archive_list .archive_item a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.page-template-page-practices-archive .archive_list .archive_item a:hover {
+  border-bottom-color: currentColor;
+}
+
+.page-template-page-practices-archive .archive_list .excerpt {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.7;
+}
+/* =========================
+   External link icon (workresult list)
+   ========================= */
+
+.wr-link-icon--external {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.35em;
+  position: relative;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.wr-link-icon--external::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 0.45em;
+  height: 0.45em;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(0deg);
+}
+
+.wr-link-icon--external::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 0.4em;
+  height: 0.4em;
+  background: #fff;
 }

@@ -39,9 +39,9 @@ foreach ( $PRACTICES_TERMS as $pt ) {
     <header class="wr-header">
       <h1 class="ttl"><?php the_title(); ?></h1>
       <?php
-      $genre  = function_exists('get_field') ? get_field('pd_genre') : '';
-      $client = function_exists('get_field') ? get_field('pd_client') : '';
-      $year   = function_exists('get_field') ? get_field('pd_year') : '';
+      $genre  = function_exists('get_field') ? ( get_field('wr_genre') ?: get_field('pd_genre') ) : '';
+      $client = function_exists('get_field') ? ( get_field('wr_client') ?: get_field('pd_client') ) : '';
+      $year   = function_exists('get_field') ? ( get_field('wr_order_year') ?: get_field('pd_year') ) : '';
       if ( $genre || $client || $year ) : ?>
         <ul class="wr-meta">
           <?php if ( $genre ): ?><li><strong>ジャンル</strong><div><?php echo esc_html( $genre ); ?></div></li><?php endif; ?>
@@ -52,28 +52,63 @@ foreach ( $PRACTICES_TERMS as $pt ) {
     </header>
 
     <div class="container">
-      <?php if ( function_exists('get_field') && ($ov = get_field('pd_overview')) ): ?>
+      <?php if ( function_exists('get_field') && ($ov = ( get_field('wr_overview') ?: get_field('pd_overview') )) ): ?>
         <section id="wr-section-overview">
           <h2>事業概要</h2>
           <div class="rich"><?php echo wp_kses_post($ov); ?></div>
         </section>
       <?php endif; ?>
 
-      <?php if ( function_exists('get_field') && ($obj = get_field('pd_objective')) ): ?>
+      <?php if ( function_exists('get_field') && ($obj = ( get_field('wr_evaluation_purpose') ?: get_field('pd_objective') )) ): ?>
         <section id="wr-section-purpose">
           <h2>評価目的</h2>
           <div class="rich"><?php echo wp_kses_post($obj); ?></div>
         </section>
       <?php endif; ?>
 
-      <?php if ( function_exists('get_field') && ($methods = get_field('pd_methods')) ): ?>
+      <?php
+      $method_period  = function_exists('get_field') ? get_field('wr_method_period')   : '';
+      $method_target  = function_exists('get_field') ? get_field('wr_method_target')   : '';
+      $method_app     = function_exists('get_field') ? get_field('wr_method_approach') : '';
+      $method_domain  = function_exists('get_field') ? get_field('wr_method_domain')   : '';
+      $has_new_method = $method_period || $method_target || $method_app || $method_domain;
+      ?>
+      <?php if ( $has_new_method ): ?>
+        <section id="wr-section-methods">
+          <h2>評価方法</h2>
+          <ul>
+            <?php if ( $method_period ): ?><li>実施期間：<?php echo esc_html( $method_period ); ?></li><?php endif; ?>
+            <?php if ( $method_target ): ?><li>実施対象：<?php echo esc_html( $method_target ); ?></li><?php endif; ?>
+            <?php if ( $method_app ): ?><li>実施方法：<?php echo esc_html( $method_app ); ?></li><?php endif; ?>
+            <?php if ( $method_domain ): ?><li>評価領域：<?php echo esc_html( $method_domain ); ?></li><?php endif; ?>
+          </ul>
+        </section>
+      <?php elseif ( function_exists('get_field') && ($methods = get_field('pd_methods')) ): ?>
         <section id="wr-section-methods">
           <h2>評価方法</h2>
           <ul><?php foreach ($methods as $r): ?><li><?php echo esc_html($r['text']); ?></li><?php endforeach; ?></ul>
         </section>
       <?php endif; ?>
 
-      <?php if ( function_exists('get_field') && ($interims = get_field('pd_interim')) ): ?>
+      <?php
+      $result_body  = function_exists('get_field') ? get_field('wr_result_body')  : '';
+      $result_image = function_exists('get_field') ? get_field('wr_result_image') : '';
+      ?>
+      <?php if ( $result_body || $result_image ): ?>
+        <section id="wr-section-results" class="wr-section-two-columns">
+          <div class="wr-section-body">
+            <h2>評価結果</h2>
+            <?php if ( $result_body ): ?>
+              <div class="rich"><?php echo wp_kses_post( $result_body ); ?></div>
+            <?php endif; ?>
+          </div>
+          <div class="wr-section-image">
+            <?php if ( $result_image && ! empty( $result_image['ID'] ) ): ?>
+              <?php echo wp_get_attachment_image( $result_image['ID'], 'large' ); ?>
+            <?php endif; ?>
+          </div>
+        </section>
+      <?php elseif ( function_exists('get_field') && ($interims = get_field('pd_interim')) ): ?>
         <section id="wr-section-results" class="wr-section-two-columns">
           <div class="wr-section-body">
             <h2>評価結果</h2>
@@ -88,7 +123,25 @@ foreach ( $PRACTICES_TERMS as $pt ) {
         </section>
       <?php endif; ?>
 
-      <?php if ( function_exists('get_field') && ($util = get_field('pd_utilization')) ): ?>
+      <?php
+      $client_use_body  = function_exists('get_field') ? get_field('wr_client_use_body')  : '';
+      $client_use_image = function_exists('get_field') ? get_field('wr_client_use_image') : '';
+      ?>
+      <?php if ( $client_use_body || $client_use_image ): ?>
+        <section id="wr-section-client-use" class="wr-section-two-columns">
+          <div class="wr-section-body">
+            <h2>クライアントによる評価の活用</h2>
+            <?php if ( $client_use_body ): ?>
+              <div class="rich"><?php echo wp_kses_post( $client_use_body ); ?></div>
+            <?php endif; ?>
+          </div>
+          <div class="wr-section-image">
+            <?php if ( $client_use_image && ! empty( $client_use_image['ID'] ) ): ?>
+              <?php echo wp_get_attachment_image( $client_use_image['ID'], 'large' ); ?>
+            <?php endif; ?>
+          </div>
+        </section>
+      <?php elseif ( function_exists('get_field') && ($util = get_field('pd_utilization')) ): ?>
         <section id="wr-section-client-use" class="wr-section-two-columns">
           <div class="wr-section-body">
             <h2>クライアントによる評価の活用</h2>
@@ -100,8 +153,29 @@ foreach ( $PRACTICES_TERMS as $pt ) {
     </div>
 
     <?php
-    // ▼ 関連する事業実績（同カテゴリ3~5件、現在記事を除外）
-    if ( $terms ) {
+    // ▼ 関連する事業実績（wr_related_workresults 優先、なければ同カテゴリ3~5件）
+    $related_posts = function_exists('get_field') ? get_field('wr_related_workresults') : [];
+    if ( $related_posts ) {
+      ?>
+      <section id="wr-section-related" class="container related">
+        <h2>関連する事業実績</h2>
+        <ul class="cards" style="display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));">
+          <?php foreach ( $related_posts as $post_obj ) : setup_postdata( $post_obj ); ?>
+            <li>
+              <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+              <?php
+              $desc_new = function_exists('get_field') ? get_field('wr_list_description') : '';
+              $desc_old = function_exists('get_field') ? get_field('wr_short_desc') : '';
+              $desc     = $desc_new ?: $desc_old;
+              if ( $desc ) : ?>
+                <p class="mini" style="margin:.3rem 0 0;color:#555;"><?php echo esc_html( $desc ); ?></p>
+              <?php endif; ?>
+            </li>
+          <?php endforeach; wp_reset_postdata(); ?>
+        </ul>
+      </section>
+      <?php
+    } elseif ( $terms ) {
       $q = new WP_Query([
         'post_type'      => 'workresult',
         'posts_per_page' => 5,
@@ -119,14 +193,19 @@ foreach ( $PRACTICES_TERMS as $pt ) {
             <?php while ( $q->have_posts() ) : $q->the_post(); ?>
               <li>
                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                <?php if ( function_exists('get_field') && ($d = get_field('wr_short_desc')) ): ?>
-                  <p class="mini" style="margin:.3rem 0 0;color:#555;"><?php echo esc_html($d); ?></p>
+                <?php
+                $desc_new = function_exists('get_field') ? get_field('wr_list_description') : '';
+                $desc_old = function_exists('get_field') ? get_field('wr_short_desc') : '';
+                $desc     = $desc_new ?: $desc_old;
+                if ( $desc ) : ?>
+                  <p class="mini" style="margin:.3rem 0 0;color:#555;"><?php echo esc_html($desc); ?></p>
                 <?php endif; ?>
               </li>
             <?php endwhile; wp_reset_postdata(); ?>
           </ul>
         </section>
-      <?php endif; } ?>
+      <?php endif; }
+    ?>
   </article>
   <!-- ▲ practices レイアウト -->
 

@@ -426,4 +426,153 @@ if ( function_exists('acf_add_local_field_group') ) {
   ]);
 }
 
+// === ACF: 事業実績：本文（v2） ===
+if ( function_exists('acf_add_local_field_group') ) {
+  acf_add_local_field_group([
+    'key'      => 'group_wr_detail_v2',
+    'title'    => '事業実績：本文（v2）',
+    'location' => [[[
+      'param'    => 'post_type',
+      'operator' => '==',
+      'value'    => 'workresult',
+    ]]],
+    'fields' => [
+      [
+        'key'           => 'field_wr_genre_v2',
+        'label'         => 'ジャンル',
+        'name'          => 'wr_genre',
+        'type'          => 'text',
+        'instructions'  => '例）社会的インパクト評価 など',
+      ],
+      [
+        'key'           => 'field_wr_client_v2',
+        'label'         => '発注者',
+        'name'          => 'wr_client',
+        'type'          => 'text',
+        'instructions'  => '例）〇〇株式会社 など',
+      ],
+      [
+        'key'           => 'field_wr_order_year_v2',
+        'label'         => '受注年度',
+        'name'          => 'wr_order_year',
+        'type'          => 'text',
+        'instructions'  => '例）2017年度〜2018年度 など',
+      ],
+      [
+        'key'           => 'field_wr_overview_v2',
+        'label'         => '事業概要',
+        'name'          => 'wr_overview',
+        'type'          => 'wysiwyg',
+        'instructions'  => '事業概要の本文を入力',
+        'toolbar'       => 'full',
+        'media_upload'  => 1,
+      ],
+      [
+        'key'           => 'field_wr_evaluation_purpose_v2',
+        'label'         => '評価目的',
+        'name'          => 'wr_evaluation_purpose',
+        'type'          => 'wysiwyg',
+        'instructions'  => '評価の目的の本文を入力',
+        'toolbar'       => 'full',
+        'media_upload'  => 1,
+      ],
+      [
+        'key'           => 'field_wr_method_period_v2',
+        'label'         => '評価方法：実施期間',
+        'name'          => 'wr_method_period',
+        'type'          => 'text',
+        'instructions'  => '例）2018年8月〜2019年3月（8ヶ月間）',
+      ],
+      [
+        'key'           => 'field_wr_method_target_v2',
+        'label'         => '評価方法：実施対象',
+        'name'          => 'wr_method_target',
+        'type'          => 'text',
+        'instructions'  => '例）〇〇市立△△中学校 など',
+      ],
+      [
+        'key'           => 'field_wr_method_approach_v2',
+        'label'         => '評価方法：実施方法',
+        'name'          => 'wr_method_approach',
+        'type'          => 'text',
+        'instructions'  => '例）アンケート調査およびインタビューを実施 など',
+      ],
+      [
+        'key'           => 'field_wr_method_domain_v2',
+        'label'         => '評価方法：評価領域',
+        'name'          => 'wr_method_domain',
+        'type'          => 'text',
+        'instructions'  => '例）キャリア教育の育成の観点から、9つの領域で評価 など',
+      ],
+      [
+        'key'           => 'field_wr_result_body_v2',
+        'label'         => '評価結果（本文）',
+        'name'          => 'wr_result_body',
+        'type'          => 'wysiwyg',
+        'instructions'  => '評価結果の本文を入力',
+        'toolbar'       => 'full',
+        'media_upload'  => 1,
+      ],
+      [
+        'key'           => 'field_wr_result_image_v2',
+        'label'         => '評価結果（画像）',
+        'name'          => 'wr_result_image',
+        'type'          => 'image',
+        'instructions'  => '補足資料などの画像があれば設定',
+        'return_format' => 'array',
+        'preview_size'  => 'medium',
+      ],
+      [
+        'key'           => 'field_wr_client_use_body_v2',
+        'label'         => 'クライアントによる評価の活用（本文）',
+        'name'          => 'wr_client_use_body',
+        'type'          => 'wysiwyg',
+        'instructions'  => 'クライアント側でどのように活用されているかを入力',
+        'toolbar'       => 'full',
+        'media_upload'  => 1,
+      ],
+      [
+        'key'           => 'field_wr_client_use_image_v2',
+        'label'         => 'クライアントによる評価の活用（画像）',
+        'name'          => 'wr_client_use_image',
+        'type'          => 'image',
+        'return_format' => 'array',
+        'preview_size'  => 'medium',
+      ],
+      [
+        'key'           => 'field_wr_related_workresults_v2',
+        'label'         => '関連する事業実績',
+        'name'          => 'wr_related_workresults',
+        'type'          => 'relationship',
+        'post_type'     => [ 'workresult' ],
+        'filters'       => [ 'search' ],
+        'return_format' => 'object',
+        'instructions'  => '関連する事業実績があれば選択',
+      ],
+    ],
+  ]);
+}
+
+// === ACF: 事業実績：一覧用（v2） ===
+if ( function_exists('acf_add_local_field_group') ) {
+  acf_add_local_field_group([
+    'key'      => 'group_wr_listing_v2',
+    'title'    => '事業実績：一覧用（v2）',
+    'location' => [[[
+      'param'    => 'post_type',
+      'operator' => '==',
+      'value'    => 'workresult',
+    ]]],
+    'fields' => [
+      [
+        'key'          => 'field_wr_list_description_v2',
+        'label'        => '簡単な説明（59文字以内）',
+        'name'         => 'wr_list_description',
+        'type'         => 'text',
+        'instructions' => '/workresult や 活用事例一覧 で表示する短い説明文（最大59文字）',
+      ],
+    ],
+  ]);
+}
+
 ?>
