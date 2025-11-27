@@ -68,13 +68,16 @@ $q = new WP_Query($args);
 
   <section class="container list">
     <?php if ( $q->have_posts() ) : ?>
-      <div class="archive_list">
+      <ul class="result_list">
         <?php while ( $q->have_posts() ) : $q->the_post(); ?>
           <?php
             // リンク判定（archive-workresult.php と同様のロジック）
             $url  = function_exists('get_field') ? get_field('wr_link_url')   : '';
             $type = function_exists('get_field') ? get_field('wr_link_type') : '';
-            $desc = function_exists('get_field') ? get_field('wr_short_desc'): '';
+            $desc = function_exists('get_field') ? get_field('wr_list_description') : '';
+            if ( function_exists('get_field') && ! $desc ) {
+              $desc = get_field('wr_short_desc');
+            }
             $type = $type ? $type : 'internal';
             $use_link = true;
             if ( $type === 'none' ) {
@@ -86,25 +89,39 @@ $q = new WP_Query($args);
                 $type = 'internal';
               }
             }
+            // アイコン
+            $icon_html = '';
+            if ( $type === 'external' ) {
+              $icon_html = '<span class="wr-link-icon wr-link-icon--external"></span>';
+            } elseif ( $type === 'internal' ) {
+              $icon_html = '<span class="wr-link-icon wr-link-icon--internal" aria-hidden="true"></span>';
+            }
+            $terms = get_the_terms( get_the_ID(), 'workresult_category' );
+            $cat_name = ( $terms && ! is_wp_error( $terms ) ) ? $terms[0]->name : '';
           ?>
-          <article class="archive_item">
-            <?php if ( $use_link && $url ) : ?>
-              <a href="<?php echo esc_url( $url ); ?>" <?php echo ($type === 'external') ? 'target="_blank" rel="noopener"' : ''; ?>>
-                <h2><?php the_title(); ?></h2>
-              </a>
-            <?php else : ?>
-              <h2><?php the_title(); ?></h2>
-            <?php endif; ?>
-            <?php if ( has_post_thumbnail() ) : ?>
-              <div class="thumb"><?php the_post_thumbnail('medium'); ?></div>
-            <?php endif; ?>
+          <li class="wr-archive-item">
+            <div class="data">
+              <div class="date"><?php echo esc_html( get_the_date( 'Y.n.j' ) ); ?></div>
+              <?php if ( $cat_name ) : ?>
+                <div class="category"><?php echo esc_html( $cat_name ); ?></div>
+              <?php endif; ?>
+            </div>
+            <div class="title">
+              <?php if ( $use_link && $url ) : ?>
+                <a href="<?php echo esc_url( $url ); ?>" <?php echo ($type === 'external') ? 'target="_blank" rel="noopener"' : ''; ?>>
+                  <?php echo esc_html( get_the_title() ); ?>
+                  <?php echo $icon_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                </a>
+              <?php else : ?>
+                <?php echo esc_html( get_the_title() ); ?>
+              <?php endif; ?>
+            </div>
             <?php if ( ! empty( $desc ) ) : ?>
-              <?php /* 一覧用の短い説明文（/workresult と共通） */ ?>
-              <p class="excerpt"><?php echo esc_html( $desc ); ?></p>
+              <p class="wr-desc"><?php echo esc_html( $desc ); ?></p>
             <?php endif; ?>
-          </article>
+          </li>
         <?php endwhile; wp_reset_postdata(); ?>
-      </div>
+      </ul>
 
       <div class="pager">
         <?php if ( function_exists('wp_pagenavi') ) { wp_pagenavi(['query' => $q]); } ?>
