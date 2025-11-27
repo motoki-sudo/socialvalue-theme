@@ -68,19 +68,43 @@ $q = new WP_Query($args);
 
   <section class="container list">
     <?php if ( $q->have_posts() ) : ?>
-      <ul class="cards">
+      <div class="archive_list">
         <?php while ( $q->have_posts() ) : $q->the_post(); ?>
-          <li class="card">
-            <a href="<?php the_permalink(); ?>">
-              <?php if ( has_post_thumbnail() ) the_post_thumbnail('medium'); ?>
-              <h3 class="card-ttl"><?php the_title(); ?></h3>
-              <?php if ( function_exists('get_field') && ($d = get_field('wr_short_desc')) ) : ?>
-                <p class="card-desc"><?php echo esc_html($d); ?></p>
-              <?php endif; ?>
-            </a>
-          </li>
+          <?php
+            // リンク判定（archive-workresult.php と同様のロジック）
+            $url  = function_exists('get_field') ? get_field('wr_link_url')   : '';
+            $type = function_exists('get_field') ? get_field('wr_link_type') : '';
+            $desc = function_exists('get_field') ? get_field('wr_short_desc'): '';
+            $type = $type ? $type : 'internal';
+            $use_link = true;
+            if ( $type === 'none' ) {
+              $use_link = false;
+              $url = '';
+            } else {
+              if ( empty( $url ) ) {
+                $url  = get_permalink();
+                $type = 'internal';
+              }
+            }
+          ?>
+          <article class="archive_item">
+            <?php if ( $use_link && $url ) : ?>
+              <a href="<?php echo esc_url( $url ); ?>" <?php echo ($type === 'external') ? 'target="_blank" rel="noopener"' : ''; ?>>
+                <h2><?php the_title(); ?></h2>
+              </a>
+            <?php else : ?>
+              <h2><?php the_title(); ?></h2>
+            <?php endif; ?>
+            <?php if ( has_post_thumbnail() ) : ?>
+              <div class="thumb"><?php the_post_thumbnail('medium'); ?></div>
+            <?php endif; ?>
+            <?php if ( ! empty( $desc ) ) : ?>
+              <?php /* 一覧用の短い説明文（/workresult と共通） */ ?>
+              <p class="excerpt"><?php echo esc_html( $desc ); ?></p>
+            <?php endif; ?>
+          </article>
         <?php endwhile; wp_reset_postdata(); ?>
-      </ul>
+      </div>
 
       <div class="pager">
         <?php if ( function_exists('wp_pagenavi') ) { wp_pagenavi(['query' => $q]); } ?>
@@ -90,12 +114,4 @@ $q = new WP_Query($args);
     <?php endif; ?>
   </section>
 </main>
-
-<style>
-  /* 必要があれば最低限の装飾を追加 */
-  .cards { display:grid; gap:20px; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); }
-  .card a { text-decoration:none; display:block; }
-  .card-ttl { margin:.5rem 0 0; font-weight:600; }
-  .card-desc { margin:.35rem 0 0; color:#555; line-height:1.6; font-size:.95rem; }
-</style>
 <?php get_footer(); ?>
