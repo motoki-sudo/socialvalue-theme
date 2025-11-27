@@ -54,13 +54,29 @@ if ( is_tax() ) {
 
         <div class="container">
             <ul class="result_list">
+                <!--
+                  Example (per item):
+                  <li>
+                    <div class="data">
+                      <div class="date">2024.4.1</div>
+                      <div class="category">カテゴリ名</div>
+                    </div>
+                    <div class="title">
+                      <a href="...">タイトル<span class="wr-link-icon wr-link-icon--external" aria-label="外部サイト（新規タブで開きます）"></span></a>
+                    </div>
+                    <p class="wr-desc">短い説明文</p>
+                  </li>
+                -->
                 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                     <?php
                     // ===== ACF 取得 =====
                     $url  = function_exists('get_field') ? get_field('wr_link_url')   : '';
                     $type = function_exists('get_field') ? get_field('wr_link_type') : '';
                     // 一覧用説明文（最大59文字想定）
-                    $desc = function_exists('get_field') ? get_field('wr_short_desc'): '';
+                    $desc = function_exists('get_field') ? get_field('wr_list_description') : '';
+                    if ( function_exists('get_field') && ! $desc ) {
+                        $desc = get_field('wr_short_desc');
+                    }
 
                     // デフォルト値やフォールバック
                     $type = $type ? $type : 'internal'; // internal / external / none
@@ -76,12 +92,12 @@ if ( is_tax() ) {
                         }
                     }
 
-                    // アイコン（必要に応じて差し替え可）
+                    // アイコン（クラスのみ付与／デザインはCSS側で制御）
                     $icon_html = '';
                     if ( $type === 'external' ) {
-                        $icon_html = '<span class="wr-link-icon wr-link-icon--external" aria-label="外部リンク"></span>';
+                        $icon_html = '<span class="wr-link-icon wr-link-icon--external" aria-label="外部サイト（新規タブで開きます）"></span>';
                     } elseif ( $type === 'internal' ) {
-                        $icon_html = '<span class="wr-icon wr-icon-internal" aria-label="内部リンク" title="内部リンク">→</span>';
+                        $icon_html = '<span class="wr-link-icon wr-link-icon--internal" aria-hidden="true"></span>';
                     }
 
                     // カテゴリ名（先頭のみ）
@@ -116,11 +132,4 @@ if ( is_tax() ) {
 
             <?php if ( function_exists( 'wp_pagenavi' ) ) { wp_pagenavi(); } ?>
         </div>
-
-        <style>
-            /* 簡易スタイル（必要に応じテーマCSSへ移動） */
-            .wr-icon { display:inline-block; margin-left:.35em; font-size:.9em; }
-            .wr-desc { margin:.3rem 0 0; color:#555; line-height:1.6; }
-            .result_list .title a { text-decoration: none; }
-        </style>
 <?php get_footer(); ?>
