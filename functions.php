@@ -306,7 +306,7 @@ if ( function_exists('acf_add_local_field_group') ) {
           'external' => '外部リンク',
           'none'     => 'リンクなし（タイトルはリンクしない）',
         ],
-        'default_value' => 'internal',
+        'default_value' => 'none',
         'ui' => 1,
         'instructions' => 'アイコン表示・リンクターゲットの制御に使用します',
         'return_format' => 'value',
