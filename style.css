@@ -464,6 +464,9 @@ footer .copyright {
 body.sub {
   padding-top: 80px;
 }
+body.single-workresult {
+  padding-top: 80px;  /* 他の下層ページと同じだけ上に余白を足す */
+}
 body.sub header .logo a {
   width: 208px;
   height: 80px;
@@ -3934,6 +3937,41 @@ margin-right: 1rem;
   margin-bottom: 4px;
 }
 
+.single-workresult .wr-header .wr-list-summary {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.single-workresult #wr-section-methods .wr-method-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.single-workresult #wr-section-methods .wr-method-list li {
+  margin-top: 10px;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.single-workresult #wr-section-methods .wr-method-list li:first-child {
+  margin-top: 0;
+}
+
+.single-workresult #wr-section-methods .wr-method-label {
+  font-weight: bold;
+  color: #333;
+  display: inline-block;
+  min-width: 6em;
+  margin-right: 4px;
+}
+
+.single-workresult #wr-section-methods .wr-method-value {
+  color: #555;
+}
+
 /* 2カラムセクション（評価結果／クライアント活用） */
 .single-workresult .wr-section-two-columns {
   display: grid;
@@ -4032,4 +4070,403 @@ margin-right: 1rem;
   width: 0.4em;
   height: 0.4em;
   background: #fff;
+}
+
+/* ==============================
+   Workresult practices layout (v2)
+   企業/財団・非営利の実践ページ専用
+   他ページに影響しないようクラスを絞る
+   ============================== */
+
+.single-workresult.is-companies .workresult-detail,
+.single-workresult.is-foundations .workresult-detail {
+  max-width: 960px;
+  margin: 0 auto 80px;
+}
+
+/* ヘッダー：タイトル＋メタ情報 */
+.single-workresult.is-companies .wr-header,
+.single-workresult.is-foundations .wr-header {
+  padding: 40px 0 24px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.single-workresult.is-companies .wr-header .ttl,
+.single-workresult.is-foundations .wr-header .ttl {
+  font-size: 2.2rem;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+.single-workresult.is-companies .wr-meta,
+.single-workresult.is-foundations .wr-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.single-workresult.is-companies .wr-meta li,
+.single-workresult.is-foundations .wr-meta li {
+  display: flex;
+  gap: 4px;
+  align-items: baseline;
+}
+
+.single-workresult.is-companies .wr-meta strong,
+.single-workresult.is-foundations .wr-meta strong {
+  font-weight: normal;
+  color: #666;
+  white-space: nowrap;
+}
+
+/* 目次ナビ（topics の .section_page_link と揃える） */
+.single-workresult.is-companies .wr-toc,
+.single-workresult.is-foundations .wr-toc {
+  margin-top: 0px;
+  background-color: #f8f8f8;
+  padding: 40px;
+}
+
+.single-workresult.is-companies .wr-toc__title,
+.single-workresult.is-foundations .wr-toc__title {
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.single-workresult.is-companies .wr-toc__list,
+.single-workresult.is-foundations .wr-toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.single-workresult.is-companies .wr-toc__list li,
+.single-workresult.is-foundations .wr-toc__list li {
+  padding-left: 1.5em;
+  position: relative;
+  margin-top: 10px;
+}
+
+.single-workresult.is-companies .wr-toc__list li:first-child,
+.single-workresult.is-foundations .wr-toc__list li:first-child {
+  margin-top: 0;
+}
+
+.single-workresult.is-companies .wr-toc__list li::before,
+.single-workresult.is-foundations .wr-toc__list li::before {
+  content: "・ ";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.single-workresult.is-companies .wr-toc__list a,
+.single-workresult.is-foundations .wr-toc__list a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #0e6191;
+}
+
+/* セクション共通（topics の section h2 と揃える） */
+.single-workresult.is-companies .wr-section,
+.single-workresult.is-foundations .wr-section {
+  margin-top: 60px;
+}
+
+.single-workresult.is-companies .wr-section h2,
+.single-workresult.is-foundations .wr-section h2 {
+  border: 0;
+  text-align: left;
+  background-color: #f8f8f8;
+  padding: 10px;
+  color: #333333;
+  font-size: 20px;
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+
+.single-workresult.is-companies .wr-section h2::before,
+.single-workresult.is-foundations .wr-section h2::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  border-radius: 2px;
+  height: 30px;
+  background-color: #77adcd;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.single-workresult.is-companies .wr-section h3,
+.single-workresult.is-foundations .wr-section h3 {
+  font-weight: bold;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.single-workresult.is-companies .wr-section h3::before,
+.single-workresult.is-foundations .wr-section h3::before {
+  content: "● ";
+  color: #77adcd;
+}
+
+.single-workresult.is-companies .wr-section .wr-section-body,
+.single-workresult.is-foundations .wr-section .wr-section-body {
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+/* 2カラムセクション（評価結果/クライアント活用） */
+.single-workresult.is-companies .wr-section--two-columns,
+.single-workresult.is-foundations .wr-section--two-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.single-workresult.is-companies .wr-section--two-columns .wr-section-body,
+.single-workresult.is-foundations .wr-section--two-columns .wr-section-body {
+  min-width: 0;
+}
+
+.single-workresult.is-companies .wr-section--two-columns .wr-section-image img,
+.single-workresult.is-foundations .wr-section--two-columns .wr-section-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 関連する事業実績 */
+.single-workresult.is-companies .wr-section--related h2,
+.single-workresult.is-foundations .wr-section--related h2 {
+  margin-bottom: 20px;
+}
+
+.single-workresult.is-companies .wr-related__list,
+.single-workresult.is-foundations .wr-related__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.single-workresult.is-companies .wr-related__item,
+.single-workresult.is-foundations .wr-related__item {
+  border: 1px solid #e5e5e5;
+  padding: 16px 16px 18px;
+  background: #fff;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.single-workresult.is-companies .wr-related__link,
+.single-workresult.is-foundations .wr-related__link {
+  display: inline-block;
+  font-size: 0.96rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 6px;
+  color: #0e6191;
+}
+
+.single-workresult.is-companies .wr-related__item:hover,
+.single-workresult.is-foundations .wr-related__item:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.single-workresult.is-companies .wr-related__desc,
+.single-workresult.is-foundations .wr-related__desc {
+  font-size: 0.86rem;
+  color: #555;
+  margin: 0;
+}
+
+/* スマホ調整（topics の h2 調整に合わせる） */
+@media (max-width: 767px) {
+  .single-workresult.is-companies .workresult-detail,
+  .single-workresult.is-foundations .workresult-detail {
+    padding: 0 16px;
+    margin-bottom: 60px;
+  }
+
+  .single-workresult.is-companies .wr-toc,
+  .single-workresult.is-foundations .wr-toc {
+    margin-top: 30px;
+    padding: 20px;
+  }
+
+  .single-workresult.is-companies .wr-toc__title,
+  .single-workresult.is-foundations .wr-toc__title {
+    font-size: 18px;
+  }
+
+  .single-workresult.is-companies .wr-toc__list li,
+  .single-workresult.is-foundations .wr-toc__list li {
+    padding-left: 1.2em;
+  }
+
+  .single-workresult.is-companies .wr-toc__list a,
+  .single-workresult.is-foundations .wr-toc__list a {
+    font-size: 14px;
+  }
+
+  .single-workresult.is-companies .wr-section,
+  .single-workresult.is-foundations .wr-section {
+    margin-top: 40px;
+  }
+
+  .single-workresult.is-companies .wr-section h2,
+  .single-workresult.is-foundations .wr-section h2 {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 20px;
+  }
+
+  .single-workresult.is-companies .wr-section h2::before,
+  .single-workresult.is-foundations .wr-section h2::before {
+    display: block;
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    margin-top: -15px;
+  }
+
+  .single-workresult.is-companies .wr-section--two-columns,
+  .single-workresult.is-foundations .wr-section--two-columns {
+    grid-template-columns: 1fr;
+  }
+}
+/* ==========================================
+   Workresult v2 — 微調整（topics デザインに寄せる）
+   ========================================== */
+
+
+
+/* 2) 「目次」タイトルの調整（黒 & 左寄せに） */
+.single-workresult.is-companies .wr-toc__title,
+.single-workresult.is-foundations .wr-toc__title {
+  text-align: left !important;
+  color: #000 !important;
+  margin-top: 0;
+}
+
+
+/* 3) 目次ブロック上の線を消す（border-top） */
+.single-workresult.is-companies .wr-toc,
+.single-workresult.is-foundations .wr-toc {
+  border-top: none !important;
+}
+
+/* 念のため section_page_link 由来の線もリセット */
+.single-workresult.is-companies .section_page_link,
+.single-workresult.is-foundations .section_page_link {
+  border-top: none !important;
+}
+/* Workresult 詳細ページの「目次」見た目調整 */
+/* タイトル以外は「事業概要」「評価目的」と同じトーンに寄せる */
+
+.single-workresult .section_page_link {
+  /* 目次ボックスの上の線を消す */
+  border-top: none;
+}
+
+/* 「目次」見出し */
+.single-workresult .section_page_link .page_link_heading {
+  /* 事業概要などの h2 と同じような見た目に寄せる */
+  border: 0;
+  text-align: left;
+  background-color: #f8f8f8;
+  padding: 10px;
+  color: #000;
+  font-size: 20px;
+  line-height: 30px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/* h2 と同じ左側の青いバーを付ける */
+.single-workresult .section_page_link .page_link_heading::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  border-radius: 2px;
+  height: 30px;
+  background-color: #77adcd;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+/* タイトル下：ジャンル／発注者／受注年度（topics 風の情報ブロック） */
+.single-workresult.is-companies .wr-header,
+.single-workresult.is-foundations .wr-header {
+  padding: 40px 0 0;
+  margin-bottom: 24px;
+  border-bottom: 0;
+}
+
+/* メタ情報全体の枠 */
+.single-workresult.is-companies .wr-meta,
+.single-workresult.is-foundations .wr-meta {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid #ddd;
+}
+
+/* 1行ごとのレイアウト（ラベル＋値の2カラム） */
+.single-workresult.is-companies .wr-meta li,
+.single-workresult.is-foundations .wr-meta li {
+  display: flex;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.single-workresult.is-companies .wr-meta li:last-child,
+.single-workresult.is-foundations .wr-meta li:last-child {
+  border-bottom: none;
+}
+
+/* 左側：ラベル（ジャンル／発注者／受注年度） */
+.single-workresult.is-companies .wr-meta strong,
+.single-workresult.is-foundations .wr-meta strong {
+  display: inline-block;
+  min-width: 110px;     /* ラベルの横幅（揃える用） */
+  margin-right: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 右側：値（例）社会的インパクト評価 など） */
+.single-workresult.is-companies .wr-meta li > *:not(strong),
+.single-workresult.is-foundations .wr-meta li > *:not(strong) {
+  flex: 1;
+}
+
+/* Workresult 実践レイアウト：ヘッダーとの重なり防止 */
+.single-workresult.is-companies,
+.single-workresult.is-foundations {
+  padding-top: 0px; /* 必要に応じて90〜100に調整可能 */
+}
+
+/* スマホ時は少し多めに */
+@media (max-width: 768px) {
+  .single-workresult.is-companies,
+  .single-workresult.is-foundations {
+    padding-top: 100px;
+  }
 }
